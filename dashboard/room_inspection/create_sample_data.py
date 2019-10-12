@@ -1,6 +1,7 @@
 # from datetime import datetime, timedelta
 #
-# def create_sample_data(future_seconds=100,filename="create_tables.sql"):
+def create_sample_data(future_seconds=100,filename="create_tables.sql"):
+    pass
 #     # future_seconds = 100
 #     schema = """
 #     CREATE TABLE IF NOT EXISTS MAC_NUM(
