@@ -42,21 +42,24 @@ def create_sample_data(future_seconds=100, filename=sample_data):
                 t = time + (s1 * i)
                 t = t.strftime("%Y-%m-%d %H:%M:%S")
                 sql = (
-                    f"""INSERT OR REPLACE INTO MAC_NUM(ID, MAC_N, TIME_NOW, ROOM_NUM) VALUES ({i}, {i}, '{t}','{i % 4}');\n""")
+                    """INSERT OR REPLACE INTO MAC_NUM(ID, MAC_N, TIME_NOW, ROOM_NUM) VALUES ({}, {}, '{}','{}');\n""".format(
+                        i, i, t, i % 4))
                 f.write(sql)
                 db.executescript(sql)
                 # for i in range(1, future_seconds):
                 #     t = time + s1 * i
                 #     t = t.strftime("%Y-%m-%d %H:%M:%S")
                 sql = (
-                    f"""INSERT OR REPLACE INTO NOISE_INDEX(ID, NOISE_LEVEL, TIME_NOW,ROOM_NUM) VALUES ({i}, {i + 0.1}, '{t}','{i % 4}');\n""")
+                    """INSERT OR REPLACE INTO NOISE_INDEX(ID, NOISE_LEVEL, TIME_NOW,ROOM_NUM) VALUES ({}, {}, '{}','{}');\n""".format(
+                        i, i, t, i % 4))
                 f.write(sql)
                 db.executescript(sql)
                 # for i in range(1, future_seconds):
                 #     t = time + s1 * i
                 #     t = t.strftime("%Y-%m-%d %H:%M:%S")
                 sql = (
-                    f"""INSERT OR REPLACE INTO AIR_QUALITY_INDEX(ID, QUALITY_LEVEL, TIME_NOW,ROOM_NUM) VALUES ({i}, {i + 0.1}, '{t}','{i % 4}');\n""")
+                    """INSERT OR REPLACE INTO AIR_QUALITY_INDEX(ID, QUALITY_LEVEL, TIME_NOW,ROOM_NUM) VALUES ({}, {}, '{}','{}');\n""".format(
+                        i, i, t, i % 4))
                 f.write(sql)
                 db.executescript(sql)
 

@@ -32,25 +32,28 @@ def create_sample_data(future_seconds=100, filename=sample_data):
         for i in range(1, future_seconds):
             t = time + (s1 * i)
             t = t.strftime("%Y-%m-%d %H:%M:%S")
-            sql = (f"""INSERT OR REPLACE INTO MAC_NUM(ID, MAC_N, TIME_NOW) VALUES ({i}, {i}, '{t}');\n""")
+            sql = ("""INSERT OR REPLACE INTO MAC_NUM(ID, MAC_N, TIME_NOW) VALUES ({}, {}, '{}');\n""".format(i, i, t))
             f.write(sql)
         for i in range(1, future_seconds):
             t = time + s1 * i
             t = t.strftime("%Y-%m-%d %H:%M:%S")
             sql = (
-                f"""INSERT OR REPLACE INTO NOISE_INDEX(ID, NOISE_LEVEL, TIME_NOW) VALUES ({i}, {i + 0.1}, '{t}');\n""")
+                """INSERT OR REPLACE INTO NOISE_INDEX(ID, NOISE_LEVEL, TIME_NOW) VALUES ({}, {}, '{}');\n""".format(i,
+                                                                                                                    i + 0.1,
+                                                                                                                    t))
             f.write(sql)
 
         for i in range(1, future_seconds):
             t = time + s1 * i
             t = t.strftime("%Y-%m-%d %H:%M:%S")
             sql = (
-                f"""INSERT OR REPLACE INTO AIR_QUALITY_INDEX(ID, QUALITY_LEVEL, TIME_NOW) VALUES ({i}, {i + 0.1}, '{t}');\n""")
+                """INSERT OR REPLACE INTO AIR_QUALITY_INDEX(ID, QUALITY_LEVEL, TIME_NOW) VALUES ({}, {}, '{}');\n""".format(
+                    i, i + 0.1, t))
             f.write(sql)
 
 
 from instance.sqliteDB import SqliteDB
 
 with SqliteDB() as db:
-    create_sample_data(1000,sample_data)
+    create_sample_data(100, sample_data)
     db.execute_from_file(sample_data)
